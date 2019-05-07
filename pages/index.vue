@@ -1,29 +1,31 @@
 <template>
   <ul v-if="posts" class="posts__container">
-    <li
-      v-for="(post, index) in posts"
-      :key="index"
-      class="posts__item">
-    </li>
+    <li v-for="(post, index) in posts" :key="index" class="posts__item">
+		<listing :listing="post"> </listing>
+	</li>
   </ul>
 </template>
 
 <script>
+import { getNewPosts } from "~/services/redditClient.js";
+import Listing from "~/components/Listing.vue";
 
 export default {
   components: {
+	Listing
   },
   data() {
     return {
       posts: null
-    }
+    };
   },
-  mounted: async function () {
+  mounted: async function() {
+    this.posts = await getNewPosts();
   }
-}
+};
 </script>
 <style lang="scss">
-.posts{
+.posts {
   &__container {
     width: 100%;
     @media (min-width: 992px) {

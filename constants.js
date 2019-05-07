@@ -1,1 +1,1 @@
-export const SUBREDDIT = 'r/PWA';
+export const SUBREDDIT = 'PWA';
